@@ -1,14 +1,3 @@
-a {
-    color:blue
-}
-ul {
-    padding-left:20px;
-    margin:4px 0;
-}
-link {
-    color:blue;
-    cursor:hand
-}
-img {
+.bf-logo {
   max-width:100%;
 }

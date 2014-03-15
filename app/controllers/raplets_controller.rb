@@ -32,11 +32,11 @@ class RapletsController < ActionController::Base
     end
 
     def pipedrive_search(email, api_key)
-      #begin
+      begin
         HTTParty.get("https://api.pipedrive.com/v1/searchResults", :query => { :term => email, :start => 0, :limit => 0, :api_token => api_key }).to_json
-      #rescue
-      #  {:success => "failed"}.to_json
-      #end
+      rescue
+        {:success => "failed"}.to_json
+      end
     end
 
     def jsonp_response(json)
