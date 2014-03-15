@@ -2,9 +2,9 @@
   center
     .row
       h1
-        =link_to "Pipedrive", "http://pipedrive.com", :title=>"Pipedrive - a CRM built for sales"
-        |  + 
         =link_to "Brandfolder", "http://brandfolder.com", :title=>"Brandfolder - the standard for delivering brand assets"
+        |  + 
+        =link_to "Pipedrive", "http://pipedrive.com", :title=>"Pipedrive - a CRM built for sales"
         |  + 
         =link_to "Rapportive", "http://rapportive.com", :title=>"Rapportive Gmail Plugin"
       h2
@@ -13,9 +13,9 @@
       .well.col-md-6.col-md-offset-3
         form action="/redirect" method="POST" role="form" class="form-horizontal"
           .col-md-12
-            =link_to "Step 1: Get your Pipeline API Key", "https://app.pipedrive.com/settings#api", :target => "_blank", :class => "btn btn-primary col-xs-12"
+            =link_to "Step 1: Get your Pipeline API Key (optional)", "https://app.pipedrive.com/settings#api", :target => "_blank", :class => "btn btn-primary col-xs-12"
             label for="api_key"
-              | Step 2: Enter API Key
+              | Step 2: Enter API Key (optional)
             input#api_key name="api_key" type="text" size="60" class="form-control input-md"
           .col-md-12
             br
