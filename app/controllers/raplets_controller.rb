@@ -56,11 +56,10 @@ class RapletsController < ActionController::Base
 
     def metadata
       {
-        :name => "Pipedrive",
-        :description => "Close deals with the Pipedrive CRM raplet provided by Brandfolder.com",
+        :name => "Pipedrive + Brandfolder",
+        :description => "Close deals with Pipedrive, and easily find brand assets with Brandfolder.",
         :welcome_text => %q{
-          <p>Install the <a href='http://pipedrive.com' target='_blank'>Pipedrive.com</a> Raplet provided by <a href='https://brandfolder.com' target='_blank'><strong>Brandfolder</strong></a>.</p>
-          <p><a href='https://brandfolder.com' target='_blank'><img width="100%" src='https://brandfolder.com/brandfolder/logo'></a></p>
+          <p>Install the <a href='http://pipedrive.com' target='_blank'>Pipedrive</a> Raplet provided by <a href='https://brandfolder.com' target='_blank'><strong>Brandfolder</strong></a>.</p>
         },
         :icon_url => "https://pipedrive.herokuapp.com/pipedrive-icon.png",
         :small_icon_url => "https://pipedrive.herokuapp.com/favicon.ico",
