@@ -6,14 +6,14 @@
       .object
         =link_to "https://app.pipedrive.com/person/details/#{pipedrive['data'][0]['id']}", :target => "_blank", :site_name => "Brandfolder", :title => "View #{pipedrive['data'][0]['title']} on Pipedrive", :class => "membership-link" do
           .icon
-            =image_tag ("https://pipedrive.herokuapp.com/favicon.ico")
+            =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
           | #{pipedrive['data'][0]['title']}
 
       -if pipedrive['data'][0]['details']['org_id']!=nil
         .object
           =link_to "https://app.pipedrive.com/person/details/#{pipedrive['data'][0]['details']['org_id']}", :target => "_blank", :site_name => "Brandfolder", :title => "View #{pipedrive['data'][0]['details']['org_name']} on Pipedrive", :class => "membership-link" do
             .icon
-              =image_tag ("https://pipedrive.herokuapp.com/favicon.ico")
+              =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
             | #{pipedrive['data'][0]['details']['org_name']}
 
 -if match && bf['slug'].present?
@@ -25,7 +25,7 @@
       .object
         =link_to "https://brandfolder.com/#{bf['slug']}", :target => "_blank", :site_name => "Brandfolder", :title => "View #{bf['name']} on Brandfolder", :class => "membership-link" do
           .icon
-            =image_tag ("https://brandfolder.com/favicon.ico")
+            =image_tag ("https://pipedrive.herokuapp.com/favicon.ico")
           | Brandfolder
       .object
         =link_to image_tag("https://brandfolder.com/#{bf['slug']}/logo", :alt => "#{bf['name']} Brandfolder"), "https://brandfolder.com/#{bf['slug']}", :target => "_blank", :class => "bf-logo", :title => "View #{bf['name']} on Brandfolder"
