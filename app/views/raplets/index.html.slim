@@ -1,0 +1,16 @@
+center
+  br
+  h1 Pipedrive + Rapportive
+  br
+  form action="/redirect" method="POST" role="form" class="form-horizontal"
+    .col-md-6.col-md-offset-3
+      label for="api_key"
+        | Pipedrive API Key: 
+        =link_to "Get yours", "https://app.pipedrive.com/settings#api", :target => "_blank"
+      input#api_key name="api_key" type="text" size="60" class="form-control"
+    .col-md-6.col-md-offset-3
+      br
+      input type="submit" value="Install raplet" class="btn btn-info col-md-12"
+  .clearfix
+  .col-md-6.col-md-offset-3
+    br

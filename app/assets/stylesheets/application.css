@@ -11,3 +11,15 @@
  *= require_self
  *= require_tree .
  */
+
+label {
+  font-size:18px !important;
+}
+
+h1 {
+  font-weight:500 !important;
+}
+
+input {
+  text-align:center !important;
+}

@@ -1,0 +1,10 @@
+html
+  head
+    title Pipedrive + Rapportive
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+    = stylesheet_link_tag "//netdna.bootstrapcdn.com/bootswatch/3.1.1/superhero/bootstrap.min.css"
+    = javascript_include_tag "//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"
+  body
+    = yield

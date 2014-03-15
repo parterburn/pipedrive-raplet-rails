@@ -6,7 +6,11 @@ class RapletsController < ActionController::Base
   end
 
   def index
-    redirect_to('https://rapportive.com/raplets?' + {:preset => raplet_base_url + '/raplet'}.to_query)
+    render "index", :layout => "application"
+  end
+
+  def redirect_to_rapportive
+    redirect_to('https://rapportive.com/raplets?' + {:preset => raplet_base_url + '/raplet/' + params[:api_key]}.to_query)    
   end
 
   def raplet

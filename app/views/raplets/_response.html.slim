@@ -1,8 +1,8 @@
 -if pipeline_json['success']==true
-  =link_to "https://app.pipedrive.com/person/details/#{pipeline_json['id']}", pipeline_json['name']
+  =link_to pipeline_json['name'], "https://app.pipedrive.com/person/details/#{pipeline_json['id']}", :target => "_blank"
   -if pipeline_json['org_id'] > 0
     br
-    =link_to "https://app.pipedrive.com/org/details/#{pipeline_json['org_id']}", pipeline_json['org_name']
+    =link_to pipeline_json['org_name'], "https://app.pipedrive.com/org/details/#{pipeline_json['org_id']}", :target => "_blank"
 
 -if bf_json["slug"].present?
   hr#details
