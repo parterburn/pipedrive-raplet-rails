@@ -1,4 +1,10 @@
 .bf-logo {
+  display: block;
+  text-align: center;
+  margin: 15px 0px;
+}
+
+.bf-logo img {
   max-width:100%;
 }
 

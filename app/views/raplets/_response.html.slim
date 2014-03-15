@@ -1,4 +1,4 @@
--if pipedrive['success']==true
+-if pipedrive['success']==true && pipedrive['data'][0]['details'].present? && pipedrive['data'][0]['details']['email'].downcase == params[:email].downcase
   ul.memberships
     li.membership.collapsed
       .object
@@ -7,7 +7,7 @@
             =image_tag ("https://pipedrive.herokuapp.com/favicon.ico")
           | #{pipedrive['data'][0]['title']}
 
-      -if pipedrive['data'][0]['details'].present? && pipedrive['data'][0]['details']['org_id'].to_i > 0
+      -if pipedrive['data'][0]['details']['org_id']!=nil
         .object
           =link_to "https://app.pipedrive.com/person/details/#{pipedrive['data'][0]['details']['org_id']}", :target => "_blank", :site_name => "Brandfolder", :title => "View #{pipedrive['data'][0]['details']['org_name']} on Pipedrive", :class => "membership-link" do
             .icon
@@ -24,4 +24,4 @@
             =image_tag ("https://brandfolder.com/favicon.ico")
           | Brandfolder
       .object
-        =link_to image_tag("https://brandfolder.com/#{bf['slug']}/logo", :alt => "#{bf['name']} Brandfolder", :class => "bf-logo"), "https://brandfolder.com/#{bf['slug']}", :target => "_blank"
+        =link_to image_tag("https://brandfolder.com/#{bf['slug']}/logo", :alt => "#{bf['name']} Brandfolder"), "https://brandfolder.com/#{bf['slug']}", :target => "_blank", :class => "bf-logo", :title => "View #{bf['name']} on Brandfolder"
