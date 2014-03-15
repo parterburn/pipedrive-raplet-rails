@@ -1,19 +1,24 @@
 center
-  br
   h1 Pipedrive + Rapportive
-  br
   form action="/redirect" method="POST" role="form" class="form-horizontal"
-    .col-md-6.col-md-offset-3
+    .col-md-4.col-md-offset-4
       label for="api_key"
-        | Pipedrive API Key: 
-        =link_to "Get yours", "https://app.pipedrive.com/settings#api", :target => "_blank"
+        | Pipedrive API Key &nbsp; 
+        =link_to "Get yours", "https://app.pipedrive.com/settings#api", :target => "_blank", :class => "btn btn-default btn-sm"
       input#api_key name="api_key" type="text" size="60" class="form-control"
-    .col-md-6.col-md-offset-3
+    .col-md-4.col-md-offset-4
       br
-      input type="submit" value="Install raplet" class="btn btn-info col-md-12"
+      input type="submit" value="Install raplet" class="btn btn-info col-xs-12"
   .clearfix
   .col-md-6.col-md-offset-3
     br
+    br
+    br
+    =link_to "Source code", "https://github.com/parterburn/pipedrive-raplet-rails"    
+    |  on GitHub 
+    | &nbsp;&nbsp; &middot; &nbsp;&nbsp;
+    | Made by 
+    =link_to "@parterburn", "http://twitter.com/parterburn"
 javascript:
   $(document).ready(function () {
     $('#api_key').focus();
