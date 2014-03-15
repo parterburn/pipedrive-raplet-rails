@@ -18,11 +18,11 @@ class RapletsController < ActionController::Base
   end
 
   def config
-    check_config_params
+    #check_config_params
   end  
 
   def config_post
-    check_config_params
+    #check_config_params
     p params[:config]
     redirect(params[:redirect_uri] + '#' + {:access_token => user.raplet_token}.to_query)
   end  
