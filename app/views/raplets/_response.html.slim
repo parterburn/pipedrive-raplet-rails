@@ -1,0 +1,10 @@
+-if pipeline_json['success']==true
+  =link_to "https://app.pipedrive.com/person/details/#{pipeline_json['id']}", pipeline_json['name']
+  -if pipeline_json['org_id'] > 0
+    br
+    =link_to "https://app.pipedrive.com/org/details/#{pipeline_json['org_id']}", pipeline_json['org_name']
+
+-if bf_json["slug"].present?
+  hr#details
+  =link_to bf_json["name"]+" Brandfolder", "https://brandfolder.com/"+bf_json["slug"], :target => "_blank"
+  =link_to image_tag("https://brandfolder.com/"+bf_json["slug"]+"/logo"), "https://brandfolder.com/"+bf_json["slug"], :target => "_blank"

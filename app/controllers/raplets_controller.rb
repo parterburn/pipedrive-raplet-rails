@@ -17,15 +17,53 @@ class RapletsController < ActionController::Base
     end
   end
 
+  def config
+    check_config_params
+  end  
+
+  def config_post
+    check_config_params
+    p params[:config]
+    redirect(params[:redirect_uri] + '#' + {:access_token => user.raplet_token}.to_query)
+  end  
+
   private
+
+    # Check that the configuration parameters have the expected values (this is important for
+    # security, so that your Raplet can't inadvertently issue an OAuth tokens to an attacker).
+    def check_config_params
+      unless params[:redirect_uri] =~ %r{\Ahttps?://(rapportive\.com|localhost)(:\d+)?/raplets/} &&
+             params[:response_type] == 'token' && params[:client_id] == 'rapportive'
+        raise "invalid configuration parameters"
+      end
+    end
+
+    def brandfolder_json(url)
+      begin
+        RestClient.get('https://brandfolder.com/api/beta/brands.json', {:params => {:url => url}})
+      rescue
+        {:slug => ""}.to_json
+      end
+    end
+
+    def pipeline_search(email, api_key)
+      begin
+        RestClient.get('https://api.pipedrive.com/v1/searchResults', {:params => {:term => email, :start => 0, :limit => 1, :api_token => api_key}})
+      rescue
+        {:success => false}.to_json
+      end
+    end
 
     def jsonp_response(json)
       render :text=>params[:callback].to_s+"("+JSON::parse(json.to_json).merge("status" => 200).to_json+")"
     end
 
     def raplet_request
+      url = params[:email].present? ? params[:email].split("@").last : ""
+      bf_json = JSON.parse(brandfolder_json(url))
+      pipeline_json = JSON.parse(pipeline_search(params[:email],params[:api_key]))
       {
-        :html=>"Hello #{params[:email]}",
+        :html=> render_to_string(:partial => "response", :locals => {:bf_json => bf_json, :pipeline_json => pipeline_json}),
         :css => File.read(Rails.application.assets['raplet.css'].pathname),
         :js => File.read(Rails.application.assets['raplet.js'].pathname)
       }
@@ -34,7 +72,7 @@ class RapletsController < ActionController::Base
     def metadata
       {
         :name => "Pipedrive",
-        :description => "Close deals with the Pipedrive CRM.",
+        :description => "Close deals with the Pipedrive CRM raplet provided by Brandfolder.com",
         :welcome_text => %q{
           <p>Install the <a href='http://pipedrive.com' target='_blank'>Pipedrive.com</a> Raplet provided by <a href='https://brandfolder.com' target='_blank'><strong>Brandfolder</strong></a>.</p>
           <p><a href='https://brandfolder.com' target='_blank'><img width="100%" src='https://brandfolder.com/brandfolder/logo'></a></p>
@@ -45,7 +83,8 @@ class RapletsController < ActionController::Base
         :preview_url => "https://pipedrive.herokuapp.com/pipedrive-preview.png",
         :dava_provider_url => "http://pipedrive.com",
         :provider_name => "Brandfolder",
-        :provider_url => "https://brandfolder.com"
+        :provider_url => "https://brandfolder.com",
+        :config_url => "#{raplet_base_url}/config"
       }
     end  
 

@@ -9,3 +9,6 @@ link {
     color:blue;
     cursor:hand
 }
+img {
+  max-width:100%;
+}
