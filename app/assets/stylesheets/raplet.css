@@ -1,3 +1,45 @@
 .bf-logo {
   max-width:100%;
 }
+
+ul.memberships {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li.membership {
+  color: #404040;
+  list-style: none;
+}
+
+a.membership-link {
+  display: block;
+  position: relative;
+  height: 20px;
+  min-height: 20px;
+  background-repeat: no-repeat;
+  background-position: 6px 5px;
+  padding-top: 6px;
+  padding-bottom: 0;
+  padding-left: 31px;
+  padding-right: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+}
+
+.icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  padding: 3px;
+  border: 1px solid transparent;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  position: absolute;
+  left: 2px;
+  top: 1px;
+}

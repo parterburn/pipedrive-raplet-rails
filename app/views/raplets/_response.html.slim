@@ -5,18 +5,14 @@
         =link_to "https://app.pipedrive.com/person/details/#{pipedrive['data'][0]['id']}", :target => "_blank", :site_name => "Brandfolder", :title => "View #{pipedrive['data'][0]['title']} on Pipedrive", :class => "membership-link" do
           .icon
             =image_tag ("https://pipedrive.herokuapp.com/favicon.ico")
-        | #{pipedrive['data'][0]['title']}
+          | #{pipedrive['data'][0]['title']}
 
-      -if pipedrive['data'][0]['details']['org_id'].to_i > 0
+      -if pipedrive['data'][0]['details'].present? && pipedrive['data'][0]['details']['org_id'].to_i > 0
         .object
           =link_to "https://app.pipedrive.com/person/details/#{pipedrive['data'][0]['details']['org_id']}", :target => "_blank", :site_name => "Brandfolder", :title => "View #{pipedrive['data'][0]['details']['org_name']} on Pipedrive", :class => "membership-link" do
             .icon
               =image_tag ("https://pipedrive.herokuapp.com/favicon.ico")
-          | #{pipedrive['data'][0]['details']['org_name']}
-
-    br
-    | Org: 
-    =link_to pipedrive['data'][0]['details']['org_name'], "https://app.pipedrive.com/org/details/#{pipedrive['data'][0]['details']['org_id']}", :target => "_blank"
+            | #{pipedrive['data'][0]['details']['org_name']}
 
 -if bf['slug'].present?
   ul.memberships
