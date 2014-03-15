@@ -13,13 +13,15 @@
       .well.col-md-6.col-md-offset-3
         form action="/redirect" method="POST" role="form" class="form-horizontal"
           .col-md-12
-            =link_to "Step 1: Get your Pipeline API Key (optional)", "https://app.pipedrive.com/settings#api", :target => "_blank", :class => "btn btn-primary col-xs-12"
+            =link_to "Step 1: Get your Pipeline API Key", "https://app.pipedrive.com/settings#api", :target => "_blank", :class => "btn btn-primary btn-md col-xs-12"
             label for="api_key"
-              | Step 2: Enter API Key (optional)
+              | Step 2: Enter API Key 
+              .btn.btn-default.btn-xs disabled="disabled"
+                | (optional)
             input#api_key name="api_key" type="text" size="60" class="form-control input-md"
           .col-md-12
             br
-            input type="submit" value="Step 3: Install raplet" class="btn btn-info col-xs-12"
+            input type="submit" value="Step 3: Install Raplet" class="btn btn-info btn-md col-xs-12"
         .clearfix
     .clearfix
     .col-md-6.col-md-offset-3

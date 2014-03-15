@@ -12,13 +12,17 @@
  *= require_tree .
  */
 
-.btn {
+.btn-md {
   font-size:18px !important;
+ }
+
+ .btn-xs {
+  cursor:text !important;
  }
 
 label {
   font-size:18px !important;
-  margin:10px auto !important;
+  margin:15px auto 10px auto !important;
 }
 
 h1 {

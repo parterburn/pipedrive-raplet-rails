@@ -58,11 +58,8 @@ class RapletsController < ActionController::Base
       {
         :name => "Brandfolder + Pipedrive",
         :description => "Easily find brand assets with Brandfolder, and close deals with Pipedrive.",
-        :welcome_text => %q{
-          <p>Install the raplet provided by <a href='https://brandfolder.com' target='_blank'><strong>Brandfolder</strong></a>.</p>
-        },
-        :icon_url => "https://brandfolder.com/brandfolder/assets/6bhwtxk7",
-        :small_icon_url => "https://brandfolder.com/favicon.ico",
+        :icon_url => "https://pipedrive.herokuapp.com/brandfolder_logo_100x100.png",
+        :small_icon_url => "https://pipedrive.herokuapp.com/favicon.ico",
         :data_provider_name => "Pipedrive",
         :preview_url => "https://pipedrive.herokuapp.com/pipedrive-preview.png",
         :dava_provider_url => "http://pipedrive.com",
