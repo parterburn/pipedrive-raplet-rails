@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-PipedriveRapletRails::Application.config.secret_key_base = 'af2a0e0c215315815c9aa61c78f65c8d778eb72e6b7c690949e91e77e7ec874ae538a8a5497e22f458d6b52234a7f4c14628e949dde6e9c5c6f4941cbcd2d4cf'
+PipedriveRapletRails::Application.config.secret_key_base = '81541e8f4d8f63847c2ed1e16e08716bdd44d1c3eb49c32ffd5e23486bb70c107573c6d6d914c385fcdb00fa785377d087ff58072846c37103acbf23a2f234ba'
