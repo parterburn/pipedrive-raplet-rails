@@ -17,26 +17,7 @@ class RapletsController < ActionController::Base
     end
   end
 
-  def config
-    #check_config_params
-  end  
-
-  def config_post
-    #check_config_params
-    p params[:config]
-    redirect(params[:redirect_uri] + '#' + {:access_token => user.raplet_token}.to_query)
-  end  
-
   private
-
-    # Check that the configuration parameters have the expected values (this is important for
-    # security, so that your Raplet can't inadvertently issue an OAuth tokens to an attacker).
-    def check_config_params
-      unless params[:redirect_uri] =~ %r{\Ahttps?://(rapportive\.com|localhost)(:\d+)?/raplets/} &&
-             params[:response_type] == 'token' && params[:client_id] == 'rapportive'
-        raise "invalid configuration parameters"
-      end
-    end
 
     def brandfolder_json(url)
       begin
@@ -83,8 +64,7 @@ class RapletsController < ActionController::Base
         :preview_url => "https://pipedrive.herokuapp.com/pipedrive-preview.png",
         :dava_provider_url => "http://pipedrive.com",
         :provider_name => "Brandfolder",
-        :provider_url => "https://brandfolder.com",
-        :config_url => "#{raplet_base_url}/config"
+        :provider_url => "https://brandfolder.com"
       }
     end  
 
