@@ -1,4 +1,6 @@
+- match = false
 -if pipedrive['success']==true && pipedrive['data'][0]['details'].present? && pipedrive['data'][0]['details']['email'].downcase == params[:email].downcase
+  - match = true
   ul.memberships
     li.membership.collapsed
       .object
@@ -14,8 +16,10 @@
               =image_tag ("https://pipedrive.herokuapp.com/favicon.ico")
             | #{pipedrive['data'][0]['details']['org_name']}
 
--if bf['slug'].present?
+-if match && bf['slug'].present?
   hr
+
+-if bf['slug'].present?
   ul.memberships
     li.membership.expanded
       .object
