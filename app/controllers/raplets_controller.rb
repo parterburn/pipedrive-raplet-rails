@@ -25,18 +25,18 @@ class RapletsController < ActionController::Base
 
     def brandfolder_json(url)
       begin
-        RestClient.get('https://brandfolder.com/api/beta/brands.json', {:params => {:url => url}})
+        HTTParty.get("https://brandfolder.com/api/beta/brands.json", :query => { :url => url }).to_json
       rescue
         {:slug => ""}.to_json
       end
     end
 
-    def pipeline_search(email, api_key)
-      begin
-        RestClient.get('https://api.pipedrive.com/v1/searchResults', {:params => {:term => email, :start => 0, :limit => 1, :api_token => api_key}})
-      rescue
-        {:success => false}.to_json
-      end
+    def pipedrive_search(email, api_key)
+      #begin
+        HTTParty.get("https://api.pipedrive.com/v1/searchResults", :query => { :term => email, :start => 0, :limit => 0, :api_token => api_key }).to_json
+      #rescue
+      #  {:success => "failed"}.to_json
+      #end
     end
 
     def jsonp_response(json)
@@ -46,9 +46,9 @@ class RapletsController < ActionController::Base
     def raplet_request
       url = params[:email].present? ? params[:email].split("@").last : ""
       bf_json = JSON.parse(brandfolder_json(url))
-      pipeline_json = JSON.parse(pipeline_search(params[:email],params[:api_key]))
+      pipedrive_json = JSON.parse(pipedrive_search(params[:email],params[:api_key]))
       {
-        :html=> render_to_string(:partial => "response", :locals => {:bf_json => bf_json, :pipeline_json => pipeline_json}),
+        :html=> render_to_string(:partial => "response", :locals => {:bf => bf_json, :pipedrive => pipedrive_json}),
         :css => File.read(Rails.application.assets['raplet.css'].pathname),
         :js => File.read(Rails.application.assets['raplet.js'].pathname)
       }

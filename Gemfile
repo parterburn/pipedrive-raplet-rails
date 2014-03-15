@@ -29,7 +29,7 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'newrelic_rpm'
 gem 'slim'
-gem 'rest-client'
+gem 'httparty'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
