@@ -29,7 +29,7 @@ li.membership {
   list-style: none;
 }
 
-a.membership-link {
+a.membership-link, form {
   display: block;
   position: relative;
   height: 20px;
@@ -72,10 +72,6 @@ li.membership:hover .icon {
 .icon img {
   max-width:16px;
   max-height:16px;
-}
-
-form {
-  display:inline-block;
 }
 
 button {

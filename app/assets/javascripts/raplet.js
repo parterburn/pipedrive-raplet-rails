@@ -26,7 +26,6 @@ $( "#addUser" ).submit(function( event ) {
  
   var posting = $.post( url, { email: email, name: name, visible_to: 0,  } );
   $("#addUser").fadeOut('fast');
-  spinner.gif
   var content = '<center><img src="https://pipedrive.herokuapp.com/spinner.gif" height="20" width="20"></center>';
   $( "#result" ).empty().append( content );
 
@@ -38,7 +37,7 @@ $( "#addUser" ).submit(function( event ) {
     } else {
       var user_id = data["data"]["id"];
       var name = data["data"]["name"];
-      content = '<ul class="memberships"><li class="membership expanded"><div class="object"><a class="membership-link" href="https://app.pipedrive.com/person/details/'+user_id+'" site_name="Pipedrive" target="_blank" title="View '+name+' on Pipedrive"><div class="icon"><img alt="Favicon" src="https://pipedrive.herokuapp.com/favicon.ico"></div>'+name+'</a></div></li></ul>';
+      content = '<ul class="memberships"><li class="membership expanded"><div class="object"><a class="membership-link" href="https://app.pipedrive.com/person/details/'+user_id+'" site_name="Pipedrive" target="_blank" title="View '+name+' on Pipedrive"><div class="icon"><img alt="Favicon" src="https://pipedrive.herokuapp.com/pipedrive_favicon.ico"></div>'+name+'</a></div></li></ul>';
     }
     $( "#result" ).empty().append( content );
   });
