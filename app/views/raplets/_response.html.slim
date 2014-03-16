@@ -7,38 +7,46 @@
             =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
           | #{pipedrive[:data][:name]}
 
-      -if pipedrive[:data][:phone]!=nil
+      -if pipedrive[:data][:phone][0][:value].present?
         .object
-          =link_to "tel:#{pipedrive[:data][:phone][0][:value]}", :target => "_blank", :site_name => "Pipedrive", :title => "Call #{pipedrive[:data][:org_id][:name]}", :class => "membership-link" do
+          =link_to "tel:+#{pipedrive[:data][:phone][0][:value]}", :site_name => "Pipedrive", :title => "Call #{pipedrive[:data][:org_id][:name]}", :class => "membership-link" do
             .icon
               =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
             | #{pipedrive[:data][:phone][0][:value]}
 
       -if pipedrive[:data][:last_activity]!=nil
-        .object
-          strong 
-            -if pipedrive[:data][:last_activity][:deal_id].present?
-              =link_to "Last #{pipedrive[:data][:last_activity][:type]}", "https://app.pipedrive.com/deal/view/#{pipedrive[:data][:last_activity][:deal_id]}#activities", :target => "_blank", :site_name => "Pipedrive", :title => "View Associated Deal Activity", :class => "membership-link"
-            -else
-              =link_to "Last #{pipedrive[:data][:last_activity][:type]}", "https://app.pipedrive.com/person/details/#{pipedrive[:data][:id]}#activities", :target => "_blank", :site_name => "Pipedrive", :title => "View Activity", :class => "membership-link"
-          br
-          small
-            = pipedrive[:data][:last_activity][:note]
-            br
-            = pipedrive[:data][:last_activity][:marked_as_done_time]
+        .object.last_activity
+          - done_date = Date.strptime(pipedrive[:data][:last_activity][:marked_as_done_time],"%Y-%m-%d %H:%M:%S").strftime("%m/%d/%Y")
+          - done_date = "on " + done_date if done_date.present?
+          -if pipedrive[:data][:last_activity][:deal_id].present?
+            =link_to "https://app.pipedrive.com/deal/view/#{pipedrive[:data][:last_activity][:deal_id]}#activities", :target => "_blank", :site_name => "Pipedrive", :title => "View Associated Deal Activity", :class => "membership-link" do
+              .icon
+                =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
+              | Last #{pipedrive[:data][:last_activity][:type]} #{done_date}
+          -else
+            =link_to "https://app.pipedrive.com/person/details/#{pipedrive[:data][:id]}#activities", :target => "_blank", :site_name => "Pipedrive", :title => "View Activity", :class => "membership-link" do
+              .icon
+                =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
+              | Last #{pipedrive[:data][:last_activity][:type]} #{done_date}
+
+          small.last_activity_note= pipedrive[:data][:last_activity][:note].html_safe
       
       -if pipedrive[:data][:next_activity]!=nil
-        .object
-          strong 
-            -if pipedrive[:data][:next_activity][:deal_id].present?
-              =link_to "Last #{pipedrive[:data][:next_activity][:type]}", "https://app.pipedrive.com/deal/view/#{pipedrive[:data][:next_activity][:deal_id]}#activities", :target => "_blank", :site_name => "Pipedrive", :title => "View Associated Deal Activity", :class => "membership-link"
-            -else
-              =link_to "Last #{pipedrive[:data][:next_activity][:type]}", "https://app.pipedrive.com/person/details/#{pipedrive[:data][:id]}#activities", :target => "_blank", :site_name => "Pipedrive", :title => "View Activity", :class => "membership-link"
-          br
-          small
-            = pipedrive[:data][:next_activity][:note]
-            br
-            = pipedrive[:data][:next_activity][:due_date]
+        .object.next_activity
+          - due_date = Date.strptime(pipedrive[:data][:next_activity][:due_date],"%Y-%m-%d").strftime("%m/%d/%Y")
+          - due_date = "on " + due_date if due_date.present?
+          -if pipedrive[:data][:next_activity][:deal_id].present?
+            =link_to "https://app.pipedrive.com/deal/view/#{pipedrive[:data][:next_activity][:deal_id]}#activities", :target => "_blank", :site_name => "Pipedrive", :title => "View Associated Deal Activity", :class => "membership-link" do
+              .icon
+                =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
+              | Upcoming #{pipedrive[:data][:next_activity][:type]} #{due_date}              
+          -else
+            =link_to "https://app.pipedrive.com/person/details/#{pipedrive[:data][:id]}#activities", :target => "_blank", :site_name => "Pipedrive", :title => "View Activity", :class => "membership-link" do
+              .icon
+                =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
+                | Upcoming #{pipedrive[:data][:next_activity][:type]} #{due_date}
+
+          small.next_activity_note= pipedrive[:data][:next_activity][:note].html_safe
 
 -if pipedrive[:success] && bf[:slug].present?
   hr

@@ -46,6 +46,10 @@ a.membership-link {
   -o-text-overflow: ellipsis;
 }
 
+.last_activity_note, .next_activity_note {
+  display:none;
+}
+
 .icon {
   display: block;
   width: 16px;
