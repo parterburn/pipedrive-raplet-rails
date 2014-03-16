@@ -39,12 +39,12 @@
             =link_to "https://app.pipedrive.com/deal/view/#{pipedrive[:data][:next_activity][:deal_id]}#activities", :target => "_blank", :site_name => "Pipedrive", :title => "View Associated Deal Activity", :class => "membership-link" do
               .icon
                 =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
-              | Upcoming #{pipedrive[:data][:next_activity][:type]} #{due_date}              
+              | Next #{pipedrive[:data][:next_activity][:type]} #{due_date}              
           -else
             =link_to "https://app.pipedrive.com/person/details/#{pipedrive[:data][:id]}#activities", :target => "_blank", :site_name => "Pipedrive", :title => "View Activity", :class => "membership-link" do
               .icon
                 =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
-                | Upcoming #{pipedrive[:data][:next_activity][:type]} #{due_date}
+              | Next #{pipedrive[:data][:next_activity][:type]} #{due_date}
 
           small.next_activity_note= pipedrive[:data][:next_activity][:note].html_safe
 
