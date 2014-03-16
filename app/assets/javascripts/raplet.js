@@ -1,15 +1,15 @@
-$('.last_activity').mouseover(function() {
-  $('.last_activity_note').slideDown();
+$('.last_activity').mouseenter(function() {
+  $('.last_activity_note').slideDown(200);
 });
 
-$('.last_activity').mouseout(function() {
-  $('.last_activity_note').slideUp();
+$('.last_activity').mouseleave(function() {
+  $('.last_activity_note').slideUp(200);
 });
 
-$('.next_activity').mouseover(function() {
-  $('.next_activity_note').slideDown();
+$('.next_activity').mouseenter(function() {
+  $('.next_activity_note').slideDown(200);
 });
 
-$('.next_activity').mouseout(function() {
-  $('.next_activity_note').slideUp();
+$('.next_activity').mouseleave(function() {
+  $('.next_activity_note').slideUp(200);
 });
