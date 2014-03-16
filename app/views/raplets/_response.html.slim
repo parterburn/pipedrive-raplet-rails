@@ -1,4 +1,6 @@
--if pipedrive[:success]
+- pipedrive_vibible = false
+-if pipedrive && pipedrive[:success]
+  - pipedrive_vibible = true
   ul.memberships
     li.membership.collapsed
       .object
@@ -48,7 +50,17 @@
 
           small.next_activity_note= pipedrive[:data][:next_activity][:note].html_safe
 
--if pipedrive[:success] && bf[:slug].present?
+-elsif params[:api_key].present?
+  - pipedrive_vibible = true
+  form#addUser action="https://api.pipedrive.com/v1/persons?api_token=#{params[:api_key]}"
+    input type="hidden" name="email" value="#{params[:email]}"
+    input type="hidden" name="name" value="#{params[:name]}"
+    button type="submit" value="Add user" ADD USER
+  #result
+
+
+
+-if pipedrive_vibible && bf[:slug].present?
   hr
 
 -if bf[:slug].present?

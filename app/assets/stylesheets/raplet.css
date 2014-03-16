@@ -73,3 +73,20 @@ li.membership:hover .icon {
   max-width:16px;
   max-height:16px;
 }
+
+button {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 1px 1px 4px rgba(160, 160, 160, 0.3);
+  -webkit-box-shadow: 1px 1px 4px rgba(160, 160, 160, 0.3);
+  box-shadow: 1px 1px 4px rgba(160, 160, 160, 0.3);
+  background: white;
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(#f4f4f4));
+  background: -moz-linear-gradient(top, white, #f4f4f4);
+  color: gray;
+  height: 9px;
+  padding: 4px 9px;
+  margin-top: 4px;
+  margin-right: 2px;
+}
