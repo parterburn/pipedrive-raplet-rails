@@ -74,6 +74,10 @@ li.membership:hover .icon {
   max-height:16px;
 }
 
+form {
+  display:inline-block;
+}
+
 button {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -85,8 +89,22 @@ button {
   background: -webkit-gradient(linear, left top, left bottom, from(white), to(#f4f4f4));
   background: -moz-linear-gradient(top, white, #f4f4f4);
   color: gray;
-  height: 9px;
   padding: 4px 9px;
   margin-top: 4px;
   margin-right: 2px;
+  border: 0px;
+  font-size: 9px;
+  cursor: pointer;  
+}
+
+button:hover {
+  border-color: #3e67a9;
+  -moz-box-shadow: 1px 1px 4px rgba(100, 130, 176, 0.4);
+  -webkit-box-shadow: 1px 1px 4px rgba(100, 130, 176, 0.4);
+  box-shadow: 1px 1px 4px rgba(100, 130, 176, 0.4);
+  background: #5685d6;
+  background: -webkit-gradient(linear, left top, left bottom, from(#5685d6), to(#3e67a9));
+  background: -moz-linear-gradient(top, #5685d6, #3e67a9);
+  color: white;
+  text-shadow: rgba(0, 0, 0, 0.3) 1px 1px 0px;
 }

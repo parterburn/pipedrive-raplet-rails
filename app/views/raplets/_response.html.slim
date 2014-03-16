@@ -52,11 +52,18 @@
 
 -elsif params[:api_key].present?
   - pipedrive_vibible = true
-  form#addUser action="https://api.pipedrive.com/v1/persons?api_token=#{params[:api_key]}"
-    input type="hidden" name="email" value="#{params[:email]}"
-    input type="hidden" name="name" value="#{params[:name]}"
-    button type="submit" value="Add user" ADD USER
-  #result
+
+  ul.memberships
+    li.membership.collapsed
+      .object
+        =link_to "https://app.pipedrive.com/person/details/#{pipedrive[:data][:id]}", :target => "_blank", :site_name => "Pipedrive", :title => "View #{pipedrive[:data][:name]} on Pipedrive", :class => "membership-link" do
+          .icon
+            =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
+          form#addUser action="https://api.pipedrive.com/v1/persons?api_token=#{params[:api_key]}"
+            input type="hidden" name="email" value="#{params[:email]}"
+            input type="hidden" name="name" value="#{params[:name]}"
+            button type="submit" value="Add user" ADD USER
+          #result
 
 
 

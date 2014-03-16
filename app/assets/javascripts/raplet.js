@@ -32,6 +32,7 @@ $( "#addUser" ).submit(function( event ) {
 
   // Put the results in a div
   posting.done(function( data ) {
+    console.log(data);
     if (typeof data["data"] === 'undefined') {
       content = "Error while adding user";
     } else {
