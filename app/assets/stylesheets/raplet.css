@@ -46,6 +46,10 @@ a.membership-link, form {
   -o-text-overflow: ellipsis;
 }
 
+form {
+  height:26px;
+}
+
 .last_activity_note, .next_activity_note {
   display:none;
 }
@@ -75,7 +79,8 @@ li.membership:hover .icon {
 }
 
 button {
-  padding-left: 31px;
+  margin-left: 31px;
+  height:19px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
