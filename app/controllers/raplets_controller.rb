@@ -33,20 +33,22 @@ class RapletsController < ActionController::Base
 
     def pipedrive_search(email, api_key)
       begin
-        HTTParty.get("https://api.pipedrive.com/v1/searchResults", :query => { :term => email, :start => 0, :limit => 0, :api_token => api_key }).to_json
+        match = JSON::parse(HTTParty.get("https://api.pipedrive.com/v1/searchResults/field", :query => { :field_type => "personField", :field_key => "email", :return_item_ids => 1, :exact_match => 0, :start => 0, :limit => 1, :term => email, :api_token => api_key }).to_json, :symbolize_names => true)
+        HTTParty.get("https://api.pipedrive.com/v1/persons/#{match[:data][0][:id]}", :query => { :api_token => api_key }).to_json
       rescue
-        {:success => "failed"}.to_json
+        {:success => false}.to_json
       end
     end
 
     def jsonp_response(json)
-      render :text=>params[:callback].to_s+"("+JSON::parse(json.to_json).merge("status" => 200).to_json+")"
+      status = json[:html].present? ? 200 : 404
+      render :text=>params[:callback].to_s+"("+JSON::parse(json.to_json, :symbolize_names => true).merge("status" => status).to_json+")"
     end
 
     def raplet_request
       url = params[:email].present? ? params[:email].split("@").last : ""
-      bf_json = JSON.parse(brandfolder_json(url))
-      pipedrive_json = JSON.parse(pipedrive_search(params[:email],params[:api_key]))
+      bf_json = JSON.parse(brandfolder_json(url), :symbolize_names => true)
+      pipedrive_json = JSON.parse(pipedrive_search(params[:email],params[:api_key]), :symbolize_names => true) if params[:api_key].present?
       {
         :html=> render_to_string(:partial => "response", :locals => {:bf => bf_json, :pipedrive => pipedrive_json}),
         :css => File.read(Rails.application.assets['raplet.css'].pathname),

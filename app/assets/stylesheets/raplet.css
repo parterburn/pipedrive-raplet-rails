@@ -13,8 +13,8 @@ hr {
   width: 100%;
   margin: 10px;
   height: 1px;
-  color: #DDDDDD;
-  background-color: #DDDDDD;
+  color: #f7f7f7;
+  background-color: #f7f7f7;
   margin: 5px 0px;
 }
 
@@ -58,6 +58,11 @@ a.membership-link {
   position: absolute;
   left: 2px;
   top: 1px;
+}
+
+li.membership:hover .icon {
+  border: 1px solid #e7e7e7;
+  background-color: #f7f7f7;
 }
 
 .icon img {

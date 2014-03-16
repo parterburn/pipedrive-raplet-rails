@@ -1,31 +1,55 @@
-- match = false
--if pipedrive['success']==true && pipedrive['data'][0]['details'].present? && pipedrive['data'][0]['details']['email'].downcase == params[:email].downcase
-  - match = true
+-if pipedrive[:success]
   ul.memberships
     li.membership.collapsed
       .object
-        =link_to "https://app.pipedrive.com/person/details/#{pipedrive['data'][0]['id']}", :target => "_blank", :site_name => "Brandfolder", :title => "View #{pipedrive['data'][0]['title']} on Pipedrive", :class => "membership-link" do
+        =link_to "https://app.pipedrive.com/person/details/#{pipedrive[:data][:id]}", :target => "_blank", :site_name => "Pipedrive", :title => "View #{pipedrive[:data][:name]} on Pipedrive", :class => "membership-link" do
           .icon
             =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
-          | #{pipedrive['data'][0]['title']}
+          | #{pipedrive[:data][:name]}
 
-      -if pipedrive['data'][0]['details']['org_id']!=nil
+      -if pipedrive[:data][:phone]!=nil
         .object
-          =link_to "https://app.pipedrive.com/person/details/#{pipedrive['data'][0]['details']['org_id']}", :target => "_blank", :site_name => "Brandfolder", :title => "View #{pipedrive['data'][0]['details']['org_name']} on Pipedrive", :class => "membership-link" do
+          =link_to "tel:#{pipedrive[:data][:phone][0][:value]}", :target => "_blank", :site_name => "Pipedrive", :title => "Call #{pipedrive[:data][:org_id][:name]}", :class => "membership-link" do
             .icon
               =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
-            | #{pipedrive['data'][0]['details']['org_name']}
+            | #{pipedrive[:data][:phone][0][:value]}
 
--if match && bf['slug'].present?
+      -if pipedrive[:data][:last_activity]!=nil
+        .object
+          strong 
+            -if pipedrive[:data][:last_activity][:deal_id].present?
+              =link_to "Last #{pipedrive[:data][:last_activity][:type]}", "https://app.pipedrive.com/deal/view/#{pipedrive[:data][:last_activity][:deal_id]}#activities", :target => "_blank", :site_name => "Pipedrive", :title => "View Associated Deal Activity", :class => "membership-link"
+            -else
+              =link_to "Last #{pipedrive[:data][:last_activity][:type]}", "https://app.pipedrive.com/person/details/#{pipedrive[:data][:id]}#activities", :target => "_blank", :site_name => "Pipedrive", :title => "View Activity", :class => "membership-link"
+          br
+          small
+            = pipedrive[:data][:last_activity][:note]
+            br
+            = pipedrive[:data][:last_activity][:marked_as_done_time]
+      
+      -if pipedrive[:data][:next_activity]!=nil
+        .object
+          strong 
+            -if pipedrive[:data][:next_activity][:deal_id].present?
+              =link_to "Last #{pipedrive[:data][:next_activity][:type]}", "https://app.pipedrive.com/deal/view/#{pipedrive[:data][:next_activity][:deal_id]}#activities", :target => "_blank", :site_name => "Pipedrive", :title => "View Associated Deal Activity", :class => "membership-link"
+            -else
+              =link_to "Last #{pipedrive[:data][:next_activity][:type]}", "https://app.pipedrive.com/person/details/#{pipedrive[:data][:id]}#activities", :target => "_blank", :site_name => "Pipedrive", :title => "View Activity", :class => "membership-link"
+          br
+          small
+            = pipedrive[:data][:next_activity][:note]
+            br
+            = pipedrive[:data][:next_activity][:due_date]
+
+-if pipedrive[:success] && bf[:slug].present?
   hr
 
--if bf['slug'].present?
+-if bf[:slug].present?
   ul.memberships
     li.membership.expanded
       .object
-        =link_to "https://brandfolder.com/#{bf['slug']}", :target => "_blank", :site_name => "Brandfolder", :title => "View #{bf['name']} on Brandfolder", :class => "membership-link" do
+        =link_to "https://brandfolder.com/#{bf[:slug]}", :target => "_blank", :site_name => "Brandfolder", :title => "View #{bf[:name]} on Brandfolder", :class => "membership-link" do
           .icon
             =image_tag ("https://pipedrive.herokuapp.com/favicon.ico")
           | Brandfolder
       .object
-        =link_to image_tag("https://brandfolder.com/#{bf['slug']}/logo", :alt => "#{bf['name']} Brandfolder"), "https://brandfolder.com/#{bf['slug']}", :target => "_blank", :class => "bf-logo", :title => "View #{bf['name']} on Brandfolder"
+        =link_to image_tag("https://brandfolder.com/#{bf[:slug]}/logo", :alt => "#{bf[:name]} Brandfolder"), "https://brandfolder.com/#{bf[:slug]}", :target => "_blank", :class => "bf-logo", :title => "View #{bf[:name]} on Brandfolder"
