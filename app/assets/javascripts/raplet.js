@@ -1,5 +1,6 @@
 $('.last_activity').mouseover(function() {
   $('.last_activity_note').slideDown();
+});
 
 $('.last_activity').mouseout(function() {
   $('.last_activity_note').slideUp();
