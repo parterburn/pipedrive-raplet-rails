@@ -42,6 +42,7 @@ $( "#addUser" ).submit(function( event ) {
             content = '<ul class="memberships"><li class="membership expanded"><div class="object"><a class="membership-link" href="https://app.pipedrive.com/person/details/'+user_id+'" site_name="Pipedrive" target="_blank" title="View '+name+' on Pipedrive"><div class="icon"><img alt="Favicon" src="https://pipedrive.herokuapp.com/pipedrive_favicon.ico"></div>'+name+'</a></div></li></ul>';
           }
           $( "#result" ).empty().append( content );
-        });
+        }
+  });
 
-});
+}); 
