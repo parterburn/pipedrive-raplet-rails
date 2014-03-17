@@ -33,9 +33,6 @@ $( "#addUser" ).submit(function( event ) {
         type: "POST",
         data: {email: email, name: name, visible_to: 0},
         success: function(data) {
-          console.log(data);
-          console.log(data.data);
-          console.log(typeof data.data === 'undefined');
           if (typeof data.data === 'undefined') {
             content = '<ul class="memberships"><li class="membership expanded"><div class="object"><a class="membership-link" href="https://app.pipedrive.com/person/details/" site_name="Pipedrive" target="_blank" title="Error while adding user"><div class="icon"><img alt="Favicon" src="https://pipedrive.herokuapp.com/pipedrive_favicon.ico"></div>Error while adding user</a></div></li></ul>';
           } else {
