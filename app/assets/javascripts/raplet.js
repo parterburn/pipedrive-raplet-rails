@@ -1,4 +1,7 @@
 //temp fix for gmail issue
+elements=document.getElementsByClassName("w-asK w-atd");
+elements[0].setAttribute("style", "display: none !important;");
+
 $('.w-asK.w-atd').addClass('removeImportant');
 
 $('#rapportive-bf .last_activity').mouseenter(function() {
