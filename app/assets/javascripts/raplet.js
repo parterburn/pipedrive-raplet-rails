@@ -1,21 +1,24 @@
-$('.last_activity').mouseenter(function() {
-  $('.last_activity_note').slideDown(200);
+//temp fix for gmail issue
+document.styleSheets[0].insertRule('.w-asK.w-atd {display: none !important', 0);
+
+$('#rapportive-bf .last_activity').mouseenter(function() {
+  $('#rapportive-bf .last_activity_note').slideDown(200);
 });
 
-$('.last_activity').mouseleave(function() {
-  $('.last_activity_note').slideUp(200);
+$('#rapportive-bf .last_activity').mouseleave(function() {
+  $('#rapportive-bf .last_activity_note').slideUp(200);
 });
 
-$('.next_activity').mouseenter(function() {
-  $('.next_activity_note').slideDown(200);
+$('#rapportive-bf .next_activity').mouseenter(function() {
+  $('#rapportive-bf .next_activity_note').slideDown(200);
 });
 
-$('.next_activity').mouseleave(function() {
-  $('.next_activity_note').slideUp(200);
+$('#rapportive-bf .next_activity').mouseleave(function() {
+  $('#rapportive-bf .next_activity_note').slideUp(200);
 });
 
 // Attach a submit handler to the form
-$( "#addUser" ).submit(function( event ) {
+$( "#rapportive-bf #addUser" ).submit(function( event ) {
  
   event.preventDefault();
  
@@ -34,16 +37,16 @@ $( "#addUser" ).submit(function( event ) {
         data: {email: email, name: name, visible_to: 0},
         success: function(data) {
           if (typeof data.data === 'undefined') {
-            content = '<ul class="memberships"><li class="membership expanded"><div class="object"><a class="membership-link" href="https://app.pipedrive.com/person/details/" site_name="Pipedrive" target="_blank" title="Error while adding user"><div class="icon"><img alt="Favicon" src="https://pipedrive.herokuapp.com/pipedrive_favicon.ico"></div>Error while adding user</a></div></li></ul>';
+            content = '<ul id="rapportive-bf" class="memberships"><li class="membership expanded"><div class="object"><a class="membership-link" href="https://app.pipedrive.com/person/details/" site_name="Pipedrive" target="_blank" title="Error while adding user"><div class="icon"><img alt="Favicon" src="https://pipedrive.herokuapp.com/pipedrive_favicon.ico"></div>Error while adding user</a></div></li></ul>';
           } else {
             var user_id = data.data.id;
             var name = data.data.name;
-            content = '<ul class="memberships"><li class="membership expanded"><div class="object"><a class="membership-link" href="https://app.pipedrive.com/person/details/'+user_id+'" site_name="Pipedrive" target="_blank" title="View '+name+' on Pipedrive"><div class="icon"><img alt="Favicon" src="https://pipedrive.herokuapp.com/pipedrive_favicon.ico"></div>'+name+'</a></div></li></ul>';
+            content = '<ul id="rapportive-bf" class="memberships"><li class="membership expanded"><div class="object"><a class="membership-link" href="https://app.pipedrive.com/person/details/'+user_id+'" site_name="Pipedrive" target="_blank" title="View '+name+' on Pipedrive"><div class="icon"><img alt="Favicon" src="https://pipedrive.herokuapp.com/pipedrive_favicon.ico"></div>'+name+'</a></div></li></ul>';
           }
           $( "#result" ).empty().append( content );
         },
         error: function(xhr) {
-          content = '<ul class="memberships"><li class="membership expanded"><div class="object"><a class="membership-link" href="https://app.pipedrive.com/person/details/" site_name="Pipedrive" target="_blank" title="Error while adding user"><div class="icon"><img alt="Favicon" src="https://pipedrive.herokuapp.com/pipedrive_favicon.ico"></div>Error while adding user</a></div></li></ul>';
+          content = '<ul id="rapportive-bf" class="memberships"><li class="membership expanded"><div class="object"><a class="membership-link" href="https://app.pipedrive.com/person/details/" site_name="Pipedrive" target="_blank" title="Error while adding user"><div class="icon"><img alt="Favicon" src="https://pipedrive.herokuapp.com/pipedrive_favicon.ico"></div>Error while adding user</a></div></li></ul>';
           $( "#result" ).empty().append( content );
         }
   });
