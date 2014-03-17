@@ -1,14 +1,17 @@
+#sidebar-screenshot
 .container
-  center
     .row
-      h1
-        =link_to "Brandfolder", "http://brandfolder.com", :title=>"Brandfolder - the standard for delivering brand assets"
-        |  + 
-        =link_to "Pipedrive", "http://pipedrive.com", :title=>"Pipedrive - a CRM built for sales"
-        |  + 
-        =link_to "Rapportive", "http://rapportive.com", :title=>"Rapportive Gmail Plugin"
-      h2
-        | A custom raplet for the Rapportive Gmail / Google Apps Plugin
+      .col-md-6.col-md-offset-3.well-transparent
+        center
+          h1
+            =link_to "Rapportive", "http://rapportive.com", :title=>"Rapportive Gmail Plugin"          
+            |  +             
+            =link_to "Brandfolder", "http://brandfolder.com", :title=>"Brandfolder - the standard for delivering brand assets"
+            |  + 
+            =link_to "Pipedrive", "http://pipedrive.com", :title=>"Pipedrive - a CRM built for sales"
+          h2
+            | A raplet for the Rapportive Gmail / Google Apps Plugin
+
     .row
       .well.col-md-6.col-md-offset-3
         form action="/redirect" method="POST" role="form" class="form-horizontal"
@@ -23,13 +26,18 @@
             br
             input type="submit" value="Step 3: Install Raplet" class="btn btn-info btn-md col-xs-12"
         .clearfix
-    .clearfix
-    .col-md-6.col-md-offset-3
-      =link_to "Source code", "https://github.com/parterburn/pipedrive-raplet-rails"    
-      |  on GitHub 
-      | &nbsp;&nbsp; &middot; &nbsp;&nbsp;
-      | Made by 
-      =link_to "@parterburn", "http://twitter.com/parterburn"
+    .row
+      .col-md-6.col-md-offset-3.well-transparent
+        center
+          br
+          br
+          =link_to "Source code", "https://github.com/parterburn/pipedrive-raplet-rails"    
+          |  on GitHub 
+          | &nbsp;&nbsp; &middot; &nbsp;&nbsp;
+          | Made by 
+          =link_to "@parterburn", "http://twitter.com/parterburn"
+          br
+          br
 javascript:
   $(document).ready(function () {
     $('#api_key').focus();

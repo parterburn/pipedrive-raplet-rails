@@ -28,18 +28,34 @@ h1 {
   margin:10% auto 20px auto !important;
   padding:0 20px !important;
   font-weight:500 !important;
+  font-size:28px !important;
 }
  
 h2 {
-  font-size:24px !important;
+  font-size:20px !important;
   margin-bottom:5% !important;
   padding:0 20px !important;
 }
 
 .well {
-  margin-bottom:5% !important;
+  margin-bottom:0px !important;
+}
+
+.well-transparent {
+  background-color: rgba(43,62,80,.8) !important;
+  padding:5px !important;
 }
 
 input {
   text-align:center !important;
+}
+
+#sidebar-screenshot {
+  background: url(../../sidebar-screenshot.png) top right no-repeat;
+  width: 1114px;
+  height: 778px;
+  position: fixed;
+  overflow:hidden;
+  top: 30px;
+  left: -820px;
 }
