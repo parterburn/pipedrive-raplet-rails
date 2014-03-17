@@ -1,7 +1,7 @@
 - pipedrive_vibible = false
 -if pipedrive && pipedrive[:success]
   - pipedrive_vibible = true
-  ul.memberships
+  ul.memberships#rapportive-bf
     li.membership.collapsed
       .object
         =link_to "https://app.pipedrive.com/person/details/#{pipedrive[:data][:id]}", :target => "_blank", :site_name => "Pipedrive", :title => "View #{pipedrive[:data][:name]} on Pipedrive", :class => "membership-link" do
@@ -53,7 +53,7 @@
 -elsif params[:api_key].present?
   - pipedrive_vibible = true
 
-  ul.memberships
+  ul.memberships#rapportive-bf
     li.membership.collapsed
       .object
         form#addUser action="https://api.pipedrive.com/v1/persons?api_token=#{params[:api_key]}"
@@ -67,10 +67,10 @@
 
 
 -if pipedrive_vibible && bf[:slug].present?
-  hr
+  hr#rapportive-bf-hr
 
 -if bf[:slug].present?
-  ul.memberships
+  ul.memberships#rapportive-bf
     li.membership.expanded
       .object
         =link_to "https://brandfolder.com/#{bf[:slug]}", :target => "_blank", :site_name => "Brandfolder", :title => "View #{bf[:name]} on Brandfolder", :class => "membership-link" do

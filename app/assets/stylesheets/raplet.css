@@ -1,14 +1,14 @@
-.bf-logo {
+#rapportive-bf .bf-logo {
   display: block;
   text-align: center;
   margin: 15px 0px;
 }
 
-.bf-logo img {
+#rapportive-bf .bf-logo img {
   max-width:100%;
 }
 
-hr {
+#rapportive-bf-hr {
   border: 0px;
   width: 100%;
   margin: 10px;
@@ -18,18 +18,18 @@ hr {
   margin: 5px 0px;
 }
 
-ul.memberships {
+#rapportive-bf {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-li.membership {
+#rapportive-bf li.membership {
   color: #404040;
   list-style: none;
 }
 
-a.membership-link, form {
+#rapportive-bf a.membership-link, form {
   display: block;
   position: relative;
   height: 20px;
@@ -46,15 +46,15 @@ a.membership-link, form {
   -o-text-overflow: ellipsis;
 }
 
-form {
+#rapportive-bf form {
   height:26px;
 }
 
-.last_activity_note, .next_activity_note {
+#rapportive-bf .last_activity_note, #rapportive-bf .next_activity_note {
   display:none;
 }
 
-.icon {
+#rapportive-bf .icon {
   display: block;
   width: 16px;
   height: 16px;
@@ -68,17 +68,17 @@ form {
   top: 1px;
 }
 
-li.membership:hover .icon {
+#rapportive-bf li.membership:hover .icon {
   border: 1px solid #e7e7e7;
   background-color: #f7f7f7;
 }
 
-.icon img {
+#rapportive-bf .icon img {
   max-width:16px;
   max-height:16px;
 }
 
-button {
+#rapportive-bf button {
   margin-left: 31px;
   height:19px;
   -moz-border-radius: 5px;
@@ -99,7 +99,7 @@ button {
   cursor: pointer;  
 }
 
-button:hover {
+#rapportive-bf button:hover {
   border-color: #3e67a9;
   -moz-box-shadow: 1px 1px 4px rgba(100, 130, 176, 0.4);
   -webkit-box-shadow: 1px 1px 4px rgba(100, 130, 176, 0.4);
