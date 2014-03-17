@@ -1,3 +1,7 @@
+.removeImportant {
+  display:none !important;
+}
+
 #rapportive-bf .bf-logo {
   display: block;
   text-align: center;
@@ -29,7 +33,7 @@
   list-style: none;
 }
 
-#rapportive-bf a.membership-link, form {
+#rapportive-bf a.membership-link, #rapportive-bf form {
   display: block;
   position: relative;
   height: 20px;

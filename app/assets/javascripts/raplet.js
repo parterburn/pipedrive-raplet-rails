@@ -1,5 +1,5 @@
 //temp fix for gmail issue
-document.styleSheets[0].insertRule('.w-asK.w-atd {display: none !important', 0);
+$('.w-asK.w-atd').addClass('removeImportant');
 
 $('#rapportive-bf .last_activity').mouseenter(function() {
   $('#rapportive-bf .last_activity_note').slideDown(200);
