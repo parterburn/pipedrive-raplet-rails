@@ -1,6 +1,8 @@
 class RapletsController < ActionController::Base
   force_ssl if: :ssl_configured?
 
+  PERSONAL = [/\Agmail\.com\z/i, /\Ahotmail\.com\z/i]
+
   def ssl_configured?
     !Rails.env.development?
   end
@@ -23,8 +25,15 @@ class RapletsController < ActionController::Base
 
   private
 
+    def shared_domain?(url)
+      (PERSONAL).map{|r| r === url }.compact.include?(true)
+    end
+
     def brandfolder_json(url)
       begin
+        if shared_domain?(url)
+          raise NoSharedEmailLookups
+        end
         HTTParty.get("https://brandfolder.com/api/beta/brands.json", :query => { :url => url }).to_json
       rescue
         {:slug => ""}.to_json
