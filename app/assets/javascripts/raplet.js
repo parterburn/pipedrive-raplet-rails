@@ -32,16 +32,20 @@ $( "#addUser" ).submit(function( event ) {
         url: url,
         type: "POST",
         data: {email: email, name: name, visible_to: 0},
-        complete: function(data) {
-          console.log(data);
-          console.log(data['response']);
-          if (typeof data['response']["data"] === 'undefined') {
+        success: function(xhr) {
+          console.log(xhr.responseText.data);
+          console.log(typeof xhr.responseText.data === 'undefined');
+          if (typeof xhr.responseText.data === 'undefined') {
             content = '<ul class="memberships"><li class="membership expanded"><div class="object"><a class="membership-link" href="https://app.pipedrive.com/person/details/" site_name="Pipedrive" target="_blank" title="Error while adding user"><div class="icon"><img alt="Favicon" src="https://pipedrive.herokuapp.com/pipedrive_favicon.ico"></div>Error while adding user</a></div></li></ul>';
           } else {
-            var user_id = data['response']["data"]["id"];
-            var name = data['response']["data"]["name"];
+            var user_id = xhr.responseText.data.id;
+            var name = xhr.responseText.data.name;
             content = '<ul class="memberships"><li class="membership expanded"><div class="object"><a class="membership-link" href="https://app.pipedrive.com/person/details/'+user_id+'" site_name="Pipedrive" target="_blank" title="View '+name+' on Pipedrive"><div class="icon"><img alt="Favicon" src="https://pipedrive.herokuapp.com/pipedrive_favicon.ico"></div>'+name+'</a></div></li></ul>';
           }
+          $( "#result" ).empty().append( content );
+        },
+        error: function(data) {
+          content = '<ul class="memberships"><li class="membership expanded"><div class="object"><a class="membership-link" href="https://app.pipedrive.com/person/details/" site_name="Pipedrive" target="_blank" title="Error while adding user"><div class="icon"><img alt="Favicon" src="https://pipedrive.herokuapp.com/pipedrive_favicon.ico"></div>Error while adding user</a></div></li></ul>';
           $( "#result" ).empty().append( content );
         }
   });
