@@ -22,13 +22,13 @@
             strong Closed deals: 
             | #{pipedrive[:data][:closed_deals_count]}
             br
-          -if pipedrive[:data][:5daca472e7d26ccd3ce7b001402bfcbdfe8f6847].present?
+          -if pipedrive[:data][:"5daca472e7d26ccd3ce7b001402bfcbdfe8f6847"].present?
             strong Brandfolder User ID: 
-            | #{pipedrive[:data][:5daca472e7d26ccd3ce7b001402bfcbdfe8f6847]}
+            | #{pipedrive[:data][:"5daca472e7d26ccd3ce7b001402bfcbdfe8f6847"]}
             br
-          -if pipedrive[:data][:2c99e572817f498fda76d6729c64517f84eb1d27].present?
+          -if pipedrive[:data][:"2c99e572817f498fda76d6729c64517f84eb1d27"].present?
             strong Brandfolder Count: 
-            | #{pipedrive[:data][:2c99e572817f498fda76d6729c64517f84eb1d27]}
+            | #{pipedrive[:data][:"2c99e572817f498fda76d6729c64517f84eb1d27"]}
             br  
 
       -if pipedrive[:data][:org_id].present?
