@@ -52,6 +52,8 @@
 
 #rapportive-bf .last_activity_note, #rapportive-bf .next_activity_note, #rapportive-bf .pipedrive_person_details {
   display:none;
+  padding:5px;
+  font-size:11px;
 }
 
 #rapportive-bf .icon {

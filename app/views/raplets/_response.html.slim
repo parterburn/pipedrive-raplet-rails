@@ -9,7 +9,7 @@
             =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
           | #{pipedrive[:data][:name]}
 
-        small.pipedrive_person_details
+        .pipedrive_person_details
           -if pipedrive[:data][:phone][0][:value].present?
             strong Ph: 
             | #{pipedrive[:data][:phone][0][:value]}
@@ -53,8 +53,9 @@
                 =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
               | Last #{pipedrive[:data][:last_activity][:type]} #{done_date}
 
-          small.last_activity_note
+          .last_activity_note
             strong= pipedrive[:data][:last_activity][:subject].html_safe
+            br
             = pipedrive[:data][:last_activity][:note].html_safe
       
       -if pipedrive[:data][:next_activity]!=nil
@@ -72,8 +73,9 @@
                 =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
               | Next #{pipedrive[:data][:next_activity][:type]} #{due_date}
 
-          small.next_activity_note
+          .next_activity_note
             strong= pipedrive[:data][:next_activity][:subject].html_safe
+            br
             = pipedrive[:data][:next_activity][:note].html_safe
 
 -elsif params[:api_key].present?
