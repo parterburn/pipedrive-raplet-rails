@@ -4,6 +4,14 @@ elements[0].setAttribute("style", "display: none !important;");
 
 $('.w-asK.w-atd').addClass('removeImportant');
 
+$('#rapportive-bf .pipedrive_person').mouseenter(function() {
+  $('#rapportive-bf .pipedrive_person_details').slideDown(200);
+});
+
+$('#rapportive-bf .pipedrive_person').mouseleave(function() {
+  $('#rapportive-bf .pipedrive_person_details').slideUp(200);
+});
+
 $('#rapportive-bf .last_activity').mouseenter(function() {
   $('#rapportive-bf .last_activity_note').slideDown(200);
 });

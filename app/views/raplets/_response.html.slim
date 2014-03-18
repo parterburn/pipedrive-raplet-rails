@@ -3,18 +3,33 @@
   - pipedrive_vibible = true
   ul.memberships#rapportive-bf
     li.membership.collapsed
-      .object
+      .object.pipedrive_person
         =link_to "https://app.pipedrive.com/person/details/#{pipedrive[:data][:id]}", :target => "_blank", :site_name => "Pipedrive", :title => "View #{pipedrive[:data][:name]} on Pipedrive", :class => "membership-link pipedrive-name" do
           .icon
             =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
           | #{pipedrive[:data][:name]}
 
-      -if pipedrive[:data][:phone][0][:value].present?
-        .object
-          =link_to "tel:+#{pipedrive[:data][:phone][0][:value]}", :site_name => "Pipedrive", :title => "Call #{pipedrive[:data][:name]}", :class => "membership-link pipedrive-phone" do
-            .icon
-              =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
+        small.pipedrive_person_details
+          -if pipedrive[:data][:phone][0][:value].present?
+            strong Ph: 
             | #{pipedrive[:data][:phone][0][:value]}
+            br
+          -if pipedrive[:data][:open_deals_count].present?
+            strong Open deals: 
+            | #{pipedrive[:data][:open_deals_count]}
+            br
+          -if pipedrive[:data][:closed_deals_count].present?
+            strong Closed deals: 
+            | #{pipedrive[:data][:closed_deals_count]}
+            br
+          -if pipedrive[:data][:5daca472e7d26ccd3ce7b001402bfcbdfe8f6847].present?
+            strong Brandfolder User ID: 
+            | #{pipedrive[:data][:5daca472e7d26ccd3ce7b001402bfcbdfe8f6847]}
+            br
+          -if pipedrive[:data][:2c99e572817f498fda76d6729c64517f84eb1d27].present?
+            strong Brandfolder Count: 
+            | #{pipedrive[:data][:2c99e572817f498fda76d6729c64517f84eb1d27]}
+            br  
 
       -if pipedrive[:data][:org_id].present?
         .object
@@ -38,7 +53,9 @@
                 =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
               | Last #{pipedrive[:data][:last_activity][:type]} #{done_date}
 
-          small.last_activity_note= pipedrive[:data][:last_activity][:note].html_safe
+          small.last_activity_note
+            strong= pipedrive[:data][:last_activity][:subject].html_safe
+            = pipedrive[:data][:last_activity][:note].html_safe
       
       -if pipedrive[:data][:next_activity]!=nil
         .object.next_activity
@@ -55,7 +72,9 @@
                 =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
               | Next #{pipedrive[:data][:next_activity][:type]} #{due_date}
 
-          small.next_activity_note= pipedrive[:data][:next_activity][:note].html_safe
+          small.next_activity_note
+            strong= pipedrive[:data][:next_activity][:subject].html_safe
+            = pipedrive[:data][:next_activity][:note].html_safe
 
 -elsif params[:api_key].present?
   - pipedrive_vibible = true
