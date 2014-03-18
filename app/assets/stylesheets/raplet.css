@@ -68,7 +68,7 @@
   top: 1px;
 }
 
-#rapportive-bf li.membership:hover .icon {
+#rapportive-bf a.pipedrive-name:hover > div.icon, #rapportive-bf a.pipedrive-phone:hover > div.icon, #rapportive-bf a.pipedrive-org:hover > div.icon, #rapportive-bf a.pipedrive-last-activity:hover > div.icon, #rapportive-bf a.pipedrive-next-activity:hover > div.icon, #rapportive-bf a.brandfolder-link:hover > div.icon {
   border: 1px solid #e7e7e7;
   background-color: #f7f7f7;
 }
