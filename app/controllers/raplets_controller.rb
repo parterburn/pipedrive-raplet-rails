@@ -30,14 +30,14 @@ class RapletsController < ActionController::Base
     end
 
     def brandfolder_json(url)
-      #begin
+      begin
         if shared_domain?(url)
           raise NoSharedEmailLookups
         end
         HTTParty.get("https://brandfolder.com/api/beta/brands.json", :query => { :url => url }).to_json
-      #rescue
-      #  {:slug => ""}.to_json
-      #end
+      rescue
+        {:slug => ""}.to_json
+      end
     end
 
     def pipedrive_search(email, api_key)
