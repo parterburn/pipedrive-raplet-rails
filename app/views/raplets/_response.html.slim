@@ -1,6 +1,6 @@
-- pipedrive_vibible = false
+- pipedrive_visible = false
 -if pipedrive && pipedrive[:success]
-  - pipedrive_vibible = true
+  - pipedrive_visible = true
   ul.memberships#rapportive-bf
     li.membership.collapsed
       .object.pipedrive_person
@@ -31,14 +31,14 @@
             | #{pipedrive[:data][:"2c99e572817f498fda76d6729c64517f84eb1d27"]}
             br  
 
-      -if pipedrive[:data][:org_id]!=0
+      -if pipedrive[:data] && pipedrive[:data][:org_id]!=0
         .object
           =link_to "https://app.pipedrive.com/org/details/#{pipedrive[:data][:org_id][:value]}", :target => "_blank", :site_name => "Pipedrive", :title => "View #{pipedrive[:data][:org_id][:name]} on Pipedrive", :class => "membership-link pipedrive-org" do
             .icon
               =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
             | #{pipedrive[:data][:org_id][:name]}  
 
-      -if pipedrive[:data][:last_activity]!=nil
+      -if pipedrive[:data] && pipedrive[:data][:last_activity]!=nil
         .object.last_activity
           - done_date = Date.strptime(pipedrive[:data][:last_activity][:marked_as_done_time],"%Y-%m-%d %H:%M:%S").strftime("%m/%d/%Y")
           - done_date = "on " + done_date if done_date.present?
@@ -58,7 +58,7 @@
             br
             = pipedrive[:data][:last_activity][:note].html_safe
       
-      -if pipedrive[:data][:next_activity]!=nil
+      -if pipedrive[:data] && pipedrive[:data][:next_activity]!=nil
         .object.next_activity
           - due_date = Date.strptime(pipedrive[:data][:next_activity][:due_date],"%Y-%m-%d").strftime("%m/%d/%Y")
           - due_date = "on " + due_date if due_date.present?
@@ -79,7 +79,7 @@
             = pipedrive[:data][:next_activity][:note].html_safe
 
 -elsif params[:api_key].present?
-  - pipedrive_vibible = true
+  - pipedrive_visible = true
 
   ul.memberships#rapportive-bf
     li.membership.collapsed
@@ -93,7 +93,7 @@
         #result
 
 
--if pipedrive_vibible && bf[:slug].present?
+-if pipedrive_visible && bf[:slug].present?
   hr#rapportive-bf-hr
 
 -if bf[:slug].present?
