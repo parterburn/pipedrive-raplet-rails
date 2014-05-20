@@ -31,14 +31,14 @@
             | #{pipedrive[:data][:"2c99e572817f498fda76d6729c64517f84eb1d27"]}
             br  
 
-      -if pipedrive[:data][:org_id]!=0 && pipedrive[:data][:org_id][:value] && pipedrive[:data][:org_id][:name]
+      -if pipedrive[:data] && pipedrive[:data][:org_id]!=0
         .object
           =link_to "https://app.pipedrive.com/org/details/#{pipedrive[:data][:org_id][:value]}", :target => "_blank", :site_name => "Pipedrive", :title => "View #{pipedrive[:data][:org_id][:name]} on Pipedrive", :class => "membership-link pipedrive-org" do
             .icon
               =image_tag ("https://pipedrive.herokuapp.com/pipedrive_favicon.ico")
             | #{pipedrive[:data][:org_id][:name]}  
 
-      -if pipedrive[:data][:last_activity]!=nil && pipedrive[:data][:last_activity][:marked_as_done_time]
+      -if pipedrive[:data][:last_activity]!=nil
         .object.last_activity
           - done_date = Date.strptime(pipedrive[:data][:last_activity][:marked_as_done_time],"%Y-%m-%d %H:%M:%S").strftime("%m/%d/%Y")
           - done_date = "on " + done_date if done_date.present?
