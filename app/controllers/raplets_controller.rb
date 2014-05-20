@@ -58,6 +58,9 @@ class RapletsController < ActionController::Base
       url = params[:email].present? ? params[:email].split("@").last : ""
       bf_json = JSON.parse(brandfolder_json(url), :symbolize_names => true)
       pipedrive_json = JSON.parse(pipedrive_search(params[:email],params[:api_key]), :symbolize_names => true) if params[:api_key].present?
+      p "*"*100
+      p bf_json
+      p "*"*100
       {
         :html=> render_to_string(:partial => "response", :locals => {:bf => bf_json, :pipedrive => pipedrive_json}),
         :css => File.read(Rails.application.assets['raplet.css'].pathname),
