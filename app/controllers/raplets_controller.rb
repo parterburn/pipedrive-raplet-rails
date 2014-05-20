@@ -1,7 +1,7 @@
 class RapletsController < ActionController::Base
   force_ssl if: :ssl_configured?
 
-  PERSONAL = [/\Agmail\.com\z/i, /\Ahotmail\.com\z/i]
+  PERSONAL = [/\Agmail\.com\z/i, /\Ahotmail\.com\z/i, /\Ayahoo\.com\z/i]
 
   def ssl_configured?
     !Rails.env.development?
@@ -30,17 +30,14 @@ class RapletsController < ActionController::Base
     end
 
     def brandfolder_json(url)
-      begin
+      #begin
         if shared_domain?(url)
           raise NoSharedEmailLookups
         end
         HTTParty.get("https://brandfolder.com/api/beta/brands.json", :query => { :url => url }).to_json
-      rescue => error
-        p "*"*100
-        p error.backtrace
-        p "*"*100
-        {:slug => ""}.to_json
-      end
+      #rescue
+      #  {:slug => ""}.to_json
+      #end
     end
 
     def pipedrive_search(email, api_key)
@@ -60,9 +57,6 @@ class RapletsController < ActionController::Base
     def raplet_request
       url = params[:email].present? ? params[:email].split("@").last : ""
       bf_json = JSON.parse(brandfolder_json(url), :symbolize_names => true)
-      p "*"*100
-      p url
-      p "*"*100
       pipedrive_json = JSON.parse(pipedrive_search(params[:email],params[:api_key]), :symbolize_names => true) if params[:api_key].present?
       {
         :html=> render_to_string(:partial => "response", :locals => {:bf => bf_json, :pipedrive => pipedrive_json}),
