@@ -35,7 +35,10 @@ class RapletsController < ActionController::Base
           raise NoSharedEmailLookups
         end
         HTTParty.get("https://brandfolder.com/api/beta/brands.json", :query => { :url => url }).to_json
-      rescue
+      rescue => error
+        p "*"*100
+        p error.backtrace
+        p "*"*100
         {:slug => ""}.to_json
       end
     end
@@ -57,10 +60,10 @@ class RapletsController < ActionController::Base
     def raplet_request
       url = params[:email].present? ? params[:email].split("@").last : ""
       bf_json = JSON.parse(brandfolder_json(url), :symbolize_names => true)
+      p "*"*100
+      p url
+      p "*"*100
       pipedrive_json = JSON.parse(pipedrive_search(params[:email],params[:api_key]), :symbolize_names => true) if params[:api_key].present?
-      p "*"*100
-      p bf_json
-      p "*"*100
       {
         :html=> render_to_string(:partial => "response", :locals => {:bf => bf_json, :pipedrive => pipedrive_json}),
         :css => File.read(Rails.application.assets['raplet.css'].pathname),
