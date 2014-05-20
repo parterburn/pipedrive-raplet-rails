@@ -31,7 +31,7 @@
             | #{pipedrive[:data][:"2c99e572817f498fda76d6729c64517f84eb1d27"]}
             br  
 
-      -if pipedrive[:data] && pipedrive[:data][:org_id]!=0 && pipedrive[:data][:org_id][:value].present? && 
+      -if pipedrive[:data] && pipedrive[:data][:org_id]!=0 && pipedrive[:data][:org_id][:value].present?
         .object
           =link_to "https://app.pipedrive.com/org/details/#{pipedrive[:data][:org_id][:value]}", :target => "_blank", :site_name => "Pipedrive", :title => "View #{pipedrive[:data][:org_id][:name]} on Pipedrive", :class => "membership-link pipedrive-org" do
             .icon
