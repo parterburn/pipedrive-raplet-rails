@@ -34,7 +34,7 @@ class RapletsController < ActionController::Base
         if shared_domain?(url)
           raise NoSharedEmailLookups
         end
-        HTTParty.get("https://brandfolder.com/api/beta/brands.json", :query => { :url => url }).to_json
+        HTTParty.get("https://brandfolder.com/api/beta/brands.json", :query => { :url => url },:verify => false).to_json
       rescue
         {:slug => ""}.to_json
       end
