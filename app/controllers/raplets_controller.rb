@@ -51,7 +51,7 @@ class RapletsController < ActionController::Base
 
     def jsonp_response(json)
       status = json[:html].present? ? 200 : 404
-      render :text=>params[:callback].to_s+"("+JSON::parse(json.to_json, :symbolize_names => true).merge("status" => status).to_json+")"
+      render :json=>params[:callback].to_s+"("+JSON::parse(json.to_json, :symbolize_names => true).merge("status" => status).to_json+")"
     end
 
     def raplet_request
